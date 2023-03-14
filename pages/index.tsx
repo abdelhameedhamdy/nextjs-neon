@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Home: React.FC<HomeProps> = ({ snaps }) => {
   const snapGroups: Array<Snap[]> = groupSnaps(JSON.parse(snaps));
   return (
-    <div className="flex flex-wrap -m-1 md:-m-2">
+    <div className="flex flex-wrap -m-2 md:-m-2">
       {snapGroups.map((snaps, index) => (
         <SnapGroup
           key={`group-${index}`}
