@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
     include: {
       snaps: { orderBy: { createdAt: "desc" }, take: 1 },
-      // users: { select: { user: true }, distinct: ["userId"] },
+      users: { select: { user: true }, distinct: ["userId"] },
     },
   });
 
@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     image: topic.snaps[0].image,
     authorId: topic.snaps[0].authorId,
     topicId: topic.id,
-    // users: topic.users.map((u) => u.user),
+    users: topic.users.map((u) => u.user),
   }));
 
   return {
@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Home: React.FC<HomeProps> = ({ snaps }) => {
   const snapGroups: Array<Snap[]> = groupSnaps(JSON.parse(snaps));
   return (
-    <div className="flex flex-wrap -m-1 md:-m-2">
+    <div className="flex flex-wrap -m-2 md:-m-2">
       {snapGroups.map((snaps, index) => (
         <SnapGroup
           key={`group-${index}`}
